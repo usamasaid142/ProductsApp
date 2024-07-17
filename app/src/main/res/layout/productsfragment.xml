@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.ProductsFragment">
+
+    <EditText
+        android:id="@+id/et_Search"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="25dp"
+        android:padding="5dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:drawableStart="@drawable/icon_search"
+        android:drawableTint="@color/blue"
+        android:drawablePadding="8dp"
+        android:imeOptions="actionDone"
+        android:hint="@string/whatdoyousearchfor"
+        android:textColorHint="@color/gray"
+        android:inputType="text"
+        android:background="@drawable/bg_edittext_search"
+        app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintEnd_toStartOf="@+id/iv_shoppingCart"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_shoppingCart"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="10dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/shopping_cart"
+        app:tint="@color/blue"
+        app:layout_constraintTop_toTopOf="@+id/et_Search"
+        app:layout_constraintStart_toEndOf="@+id/et_Search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/et_Search"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_Products"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="15dp"
+        android:paddingBottom="30dp"
+        tools:listitem="@layout/item_layout_products"
+        app:layout_constraintTop_toBottomOf="@+id/et_Search"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
