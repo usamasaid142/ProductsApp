@@ -9,10 +9,10 @@
     <EditText
         android:id="@+id/et_Search"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_marginTop="25dp"
         android:padding="5dp"
-        android:layout_marginStart="15dp"
+        android:layout_marginStart="20dp"
         android:layout_marginEnd="15dp"
         android:drawableStart="@drawable/icon_search"
         android:drawableTint="@color/blue"

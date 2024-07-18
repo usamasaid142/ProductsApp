@@ -6,8 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.osama.productsapp.R
 import com.osama.productsapp.databinding.ItemLayoutProductsBinding
 import com.osama.productsapp.model.Product
+import java.text.NumberFormat
+import java.util.Locale
+import kotlin.math.roundToInt
 
 
 class AllProductsAdapter () :
@@ -27,7 +31,20 @@ class AllProductsAdapter () :
 
         holder.binding.apply {
             data = product
+            val price= product.price?.let { product.discountPercentage?.let { it1 ->
+                calculatePrice(it,
+                    it1
+                )
+            } }
+            tvTotalPrice.text="${holder.binding.tvTotalPrice.context.getString(
+                R.string.egp)} ${price}"
+            tvPriceBefore.text="${NumberFormat.getNumberInstance(Locale.US).format(product.price)} ${holder.binding.tvPriceBefore.context.getString(
+                R.string.egp)}"
+            tvReviews.text="${holder.binding.tvReviews.context.getString(
+                R.string.reviews)} (${price})"
+
         }
+
     }
     class ViewHolder(itemBinding: ItemLayoutProductsBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
@@ -41,8 +58,13 @@ class AllProductsAdapter () :
             return true
         }
     }
-    interface IShowDetails {
-        fun onItemClick(id: String)
+    private fun calculatePrice(price:Double,discountPercentage:Double):String{
+
+        val priceBeforeDiscount = price
+        val discountPercentage = discountPercentage
+        val discountedPrice = priceBeforeDiscount * (1 - discountPercentage / 100)
+        val roundedPrice = "%.2f".format(discountedPrice)
+        return roundedPrice
     }
 
 }
